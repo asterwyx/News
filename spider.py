@@ -78,10 +78,10 @@ def get_news(link):
     #        print(i.text)
     #        article_list.append(i.text)
     # 转为字典格式
-    news = {'link': link, 'title': title, 'date': date}
+    news = {'link': link, 'title': title[0], 'date': date[0]}
     file_name = "sinanews.txt"
     file = open(file_name, 'a', encoding='utf-8')
-    file.write(title + "    " + date + "    " + link + '\n')
+    file.write(title[0] + " " + date[0] + " " + link + '\n')
     file.close()
 
 

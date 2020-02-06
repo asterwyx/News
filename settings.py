@@ -1,4 +1,4 @@
-
+# -*- coding: UTF-8 -*-
 # 数据库连接的配置字典
 setting_dict = {
     'host': "localhost",

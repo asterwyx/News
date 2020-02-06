@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from orm_util import *
 
 # 用metaclass实现一个ORM框架
@@ -109,12 +110,12 @@ class Model(dict, metaclass=ModelMetaclass):
                 params.append(v.print_value())
                 args.append(getattr(self, k, None))
         sql = "INSERT INTO %s (%s) VALUES (%s);" % (self.__table__, ", ".join(fields), ", ".join(params))
-        print('SQL: %s' % sql)
-        print('ARGS: %s' % str(args))
+        # print('SQL: %s' % sql)
+        # print('ARGS: %s' % str(args))
         try:
             db.cursor.execute(sql)
             db.conn.commit()
-            print("操作成功")
+            # print("操作成功")
         except Error:
             db.conn.rollback()
             print("操作失败")
@@ -124,7 +125,7 @@ class Model(dict, metaclass=ModelMetaclass):
         try:
             db.cursor.execute(sql)
             db.conn.commit()
-            print("操作成功")
+            # print("操作成功")
         except Error:
             db.conn.rollback()
             print("操作失败")
@@ -144,7 +145,7 @@ class Model(dict, metaclass=ModelMetaclass):
         try:
             db.cursor.execute(sql)
             db.conn.commit()
-            print("操作成功")
+            # print("操作成功")
         except Error:
             db.conn.rollback()
             print("操作失败")
@@ -178,12 +179,12 @@ class Model(dict, metaclass=ModelMetaclass):
             param_list.append("%s=%s" % (k, v))
         set_str = ", ".join(param_list)
         sql = "UPDATE %s SET %s WHERE %s=%s;" % (self.__table__, set_str, id_field.name, id_field.print_value())
-        print('SQL: %s' % sql)
-        print('ARGS: %s' % str(args))
+        # print('SQL: %s' % sql)
+        # print('ARGS: %s' % str(args))
         try:
             db.cursor.execute(sql)
             db.conn.commit()
-            print("操作成功")
+            # print("操作成功")
         except Error:
             db.conn.rollback()
             print("操作失败")
@@ -193,7 +194,7 @@ class Model(dict, metaclass=ModelMetaclass):
         try:
             db.cursor.execute(sql)
             db.conn.commit()
-            print("操作成功")
+            # print("操作成功")
         except Error:
             db.conn.rollback()
             print("操作失败")
@@ -206,4 +207,5 @@ class SinaNews(Model):
     id = IntegerField(name="id", null=False, primary=True, auto_increment=True)
     title = StringField(name="title", null=False)
     date = StringField(name="date", null=False)
+    link = StringField(name="link", null=False)
 # end

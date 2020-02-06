@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 # 这个文件是模块主体，提供各种工具函数
-
 import re
 from pymysql import *
 import settings
@@ -70,16 +69,16 @@ def map_from_database():
     table_desc_list = []
     sql = "SHOW TABLES;"
     set_db.cursor.execute(sql)
-    print("这是描述的内容: %s" % set_db.cursor.description)
+    # print("这是描述的内容: %s" % set_db.cursor.description)
     # description中是一个元组，包含这个查询结果的各项信息
     field_name = set_db.cursor.description[0][0]  # 表名的字段名
-    print(field_name)
+    # print(field_name)
     results = set_db.cursor.fetchall()
-    print(results)
+    # print(results)
     # 调试用
     for row in results:
         t_name = row[field_name]
-        print(t_name)
+        # print(t_name)
     try:
         # 因为一般的代码文件都不是很大，所以这里选择直接读取整个文件，这样便于做插入
         with open(file=settings.model_path, mode='rt', encoding='utf8') as model_file:
@@ -92,11 +91,11 @@ def map_from_database():
             sql = "SHOW CREATE TABLE %s;" % t_name
             set_db.cursor.execute(sql)
             structure = set_db.cursor.fetchone()
-            print(structure)
+            # print(structure)
             sql = "DESC %s" % t_name
             set_db.cursor.execute(sql)
             desc = set_db.cursor.fetchall()
-            print(desc)
+            # print(desc)
             exist = False
             for i in range(len(table_desc_list)):
                 if structure['Table'] == table_desc_list[i]['name']:
